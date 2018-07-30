@@ -13,9 +13,17 @@ app = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd"
 # mongo = PyMongo(app)
 
-client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd")
+DB_NAME = "heroku_bx2c0mfd"
+DB_HOST = "ds259711.mlab.com"
+DB_PORT = 59711
+DB_USER = "ankitheroku" 
+DB_PASS = "Ank1t$eth"
 
-db = client.heroku_bx2c0mfd
+connection = pymongo.MongoClient(DB_HOST, DB_PORT)
+db = connection[DB_NAME]
+db.authenticate(DB_USER, DB_PASS)
+
+#client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd")
 
 def jd(obj):
     return json.dumps(obj, default=json_util.default)
