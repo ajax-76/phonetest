@@ -75,3 +75,6 @@ def hello_world(number):
                         'status':'number should be between 111-111-1111 and 999-999-9999',
                         'NewNumber':'No Number Alloted',
                         })
+                
+if __name__ == "__main__":
+	app.run()                
