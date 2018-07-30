@@ -15,9 +15,11 @@ app = Flask(__name__)
 
 
 
-client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd")
+client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd",connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True, connect=False, maxPoolsize=1)
 
 db = client.heroku_bx2c0mfd
+
+
 
 def jd(obj):
     return json.dumps(obj, default=json_util.default)
