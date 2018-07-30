@@ -8,7 +8,7 @@ from random import randint
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/eve"
+app.config["MONGO_URI"] = "mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd"
 mongo = PyMongo(app)
 
 def jd(obj):
@@ -28,9 +28,10 @@ def index():
 	return "hello world"
 @app.route('/AlotAnyNumberNumber/')
 def AnyNumber():
+
 	length=1
 	finalnum=""
-	while length==0:
+	while length==1:
                 anynum=randint(1111111111,9999999999)
                 num=mongo.db.Numbers.find({'Number':anynum}, {'Number':1,'_id':0})
                 if num.count()==0:
