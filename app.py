@@ -15,9 +15,9 @@ app = Flask(__name__)
 
 
 
-client = pymongo.MongoClient("mongodb://incubig:Ank1t$eth@cluster0-shard-00-00-dm5jc.mongodb.net:27017,cluster0-shard-00-01-dm5jc.mongodb.net:27017,cluster0-shard-00-02-dm5jc.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true")
+client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd")
 
-db = client.test
+db = client.heroku_bx2c0mfd
 
 def jd(obj):
     return json.dumps(obj, default=json_util.default)
