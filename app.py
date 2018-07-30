@@ -5,11 +5,17 @@ from flask import make_response
 from flask import json
 from bson import json_util
 from random import randint
+import pymongo
+
 
 app = Flask(__name__)
 
 app.config["MONGO_URI"] = "mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd"
 mongo = PyMongo(app)
+
+client = pymongo.MongoClient("mongodb://ankitheroku:Ank1t$eth@ds259711.mlab.com:59711/heroku_bx2c0mfd")
+
+db = client.heroku_bx2c0mfd
 
 def jd(obj):
     return json.dumps(obj, default=json_util.default)
@@ -33,9 +39,9 @@ def AnyNumber():
 	finalnum=""
 	while length==1:
                 anynum=randint(1111111111,9999999999)
-                num=mongo.db.Numbers.find({'Number':anynum}, {'Number':1,'_id':0})
-                if num.count()==0:
-                    mongo.db.Numbers.insert({'Number':anynum})
+                num=db.Numbers.find({'Number':anynum}, {'Number':1,'_id':0})
+                if len(list(num))==0:
+                    db.Numbers.insert({'Number':anynum})
                     finalnum=anynum
                     length=0
 	return jsonify({
@@ -46,29 +52,28 @@ def AnyNumber():
 @app.route('/AlotFancyNumberNumber/<int:number>')
 def hello_world(number):
             if int(number)>=1111111111 and int(number)<=9999999999:
-            	    user=mongo.db.Numbers.find({'Number':number}, {'Number':1,'_id':0})
-                    length=user.count()
+            	    user=db.Numbers.find({'Number':number}, {'Number':1,'_id':0})
+            	    userlist=list(user)
+                    length=len(userlist)
                     if length!=0:
                             numb=""
                             finalnum=""
-                            for num in user:
-                                numb=num
                             l=0    
 
                             while l==0:
                                         anynum=randint(1111111111,9999999999)
-                                        num=mongo.db.Numbers.find({'Number':anynum}, {'Number':1,'_id':0})
-                                        if num.count()==0:
-                                                mongo.db.Numbers.insert({'Number':anynum})
+                                        num=db.Numbers.find({'Number':anynum}, {'Number':1,'_id':0})
+                                        if len(list(num))==0:
+                                                db.Numbers.insert({'Number':anynum})
                                                 finalnum=anynum
                                                 return jsonify({
-							                                'status':str(numb["Number"])+' Number already Alloted',
+							                                'status':str(number)+' Number already Alloted',
 							                                'NewNumber':finalnum
 							                                })
 
                            
                     else:
-                        mongo.db.Numbers.insert({'Number':number})
+                        db.Numbers.insert({'Number':number})
                         return jsonify({
                             'status':'New Number Alloted',
                             'NewNumber':number,
