@@ -23,7 +23,9 @@ def response(data={}, code=200):
     response.headers['Status Code'] = resp['code']
     response.headers['Content-Type'] = "application/json"
     return response
-
+@app.route('/')
+def index():
+	return "hello world"
 @app.route('/AlotAnyNumberNumber/')
 def AnyNumber():
 	length=1
@@ -75,6 +77,6 @@ def hello_world(number):
                         'status':'number should be between 111-111-1111 and 999-999-9999',
                         'NewNumber':'No Number Alloted',
                         })
-                
+
 if __name__ == "__main__":
 	app.run()                
