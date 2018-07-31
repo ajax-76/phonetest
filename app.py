@@ -36,7 +36,7 @@ def response(data={}, code=200):
 @app.route('/')
 def index():
 	return "hello world"
-@app.route('/AlotAnyNumberNumber/')
+@app.route('/AlotAnyNumber/')
 def AnyNumber():
 
 	length=1
@@ -53,7 +53,7 @@ def AnyNumber():
 	                'NewNumber':finalnum,
 	                })
 
-@app.route('/AlotFancyNumberNumber/<int:number>')
+@app.route('/AlotFancyNumber/<int:number>')
 def hello_world(number):
             if int(number)>=1111111111 and int(number)<=9999999999:
             	    user=db.Numbers.find({'Number':number}, {'Number':1,'_id':0})
@@ -84,7 +84,7 @@ def hello_world(number):
                             })
             else:
                 return  jsonify({
-                        'status':'number should be between 111-111-1111 and 999-999-9999',
+                        'status':'number should be between 1111111111 and 9999999999',
                         'NewNumber':'No Number Alloted',
                         })
 
